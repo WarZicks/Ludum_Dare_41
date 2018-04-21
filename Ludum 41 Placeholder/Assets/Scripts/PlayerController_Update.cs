@@ -12,10 +12,14 @@ public class PlayerController_Update : MonoBehaviour {
     public float heldTime = 0.0f;
     public UI_Manager CurrentCarbu;
 
+    public AudioSource Fly;
+    private float Volume = 1.0f;
+
     private Rigidbody2D rg2D;
 
     private void Start()
     {
+        Fly = GetComponent<AudioSource>();
         rg2D = GetComponent<Rigidbody2D>();
     }
 
@@ -37,7 +41,12 @@ public class PlayerController_Update : MonoBehaviour {
         // décrémentation jauge carburant
         if (dirX != 0 || dirY != 0)
         {
+            Volume += 0.05f;
+            Fly.volume = Volume;
             CurrentCarbu.UpdateCarbu();
+        }
+        else {
+            Fly.volume -= 0.05f;
         }
 
         cam.transform.Translate(dirX * (Mathf.Abs(cam.transform.position.x - transform.position.x) / (8.9f - border)), 0, 0, Space.World);
