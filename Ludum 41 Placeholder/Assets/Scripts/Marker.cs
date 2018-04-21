@@ -10,11 +10,13 @@ public class Marker : MonoBehaviour {
     Vector3 parPos, camPos;
 
     void Update () {
-        if (parent == null)
+        if (parent != null)
+        {
+            camPos = GameObject.FindGameObjectWithTag("MainCamera").transform.position;
+            parPos = parent.transform.position - camPos;
+            transform.position = camPos + new Vector3(Mathf.Clamp(parPos.x, -width, width), Mathf.Clamp(parPos.y, -height, height), 10);
+        }
+        else
             Destroy(gameObject);
-
-        camPos = GameObject.FindGameObjectWithTag("MainCamera").transform.position;
-        parPos = parent.transform.position - camPos;
-        transform.position = camPos + new Vector3(Mathf.Clamp(parPos.x, -width, width), Mathf.Clamp(parPos.y, -height, height), 10);
     }
 }
