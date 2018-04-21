@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
     public float speed;
     public GameObject cam;
     public float border;
-
+    
     private Rigidbody2D rg2D;
 
     private void Start()
@@ -33,12 +33,9 @@ public class PlayerController : MonoBehaviour {
         cam.transform.Translate(dirX * (Mathf.Abs(cam.transform.position.x - transform.position.x) / (8.9f - border)), 0, 0, Space.World);
         cam.transform.Translate(0, dirY * (Mathf.Abs(cam.transform.position.y - transform.position.y) / (5f - border)), 0, Space.World);
 
-        /*if (Mathf.Abs(cam.transform.position.x - transform.position.x) > 8.9 - 2)
-            cam.transform.Translate(dirX, 0, 0, Space.World);
-        if (Mathf.Abs(cam.transform.position.y - transform.position.y) > 5 - 2)
-            cam.transform.Translate(0, dirY, 0, Space.World);*/
-
-        //transform.forward = new Vector3 (Input.GetAxis("Horizontal"), 0, 0);
+        if (Input.GetAxis("Fire1") == 1)
+        {
+            GetComponent<Weapon>().Shoot();
+        }
     }
-
 }
