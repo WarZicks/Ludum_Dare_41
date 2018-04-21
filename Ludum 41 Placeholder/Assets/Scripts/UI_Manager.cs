@@ -8,7 +8,7 @@ public class UI_Manager : MonoBehaviour {
     public Image Life;
     public Image Carbu;
     public Image Vidange;
-    public PlayerController_Update Player;
+    public PlayerController Player;
 
     public float heldTime = 0.0f;
 

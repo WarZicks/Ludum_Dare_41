@@ -42,6 +42,7 @@ public class PlayerController_Update : MonoBehaviour {
 
         cam.transform.Translate(dirX * (Mathf.Abs(cam.transform.position.x - transform.position.x) / (8.9f - border)), 0, 0, Space.World);
         cam.transform.Translate(0, dirY * (Mathf.Abs(cam.transform.position.y - transform.position.y) / (5f - border)), 0, Space.World);
+
         
     }
 
