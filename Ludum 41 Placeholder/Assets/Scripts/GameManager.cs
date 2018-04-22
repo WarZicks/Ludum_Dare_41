@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public float timerInit, timer;
-    public GameObject enemy;
+    public GameObject enemy, zoneSpawn;
 
 	void Start () {
 		
@@ -23,9 +23,6 @@ public class GameManager : MonoBehaviour {
     public void Spawn(Vector3 dir)
     {
         var player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().transform.position;
-        for (int i = 0; i <= 10; i++)
-        {
-            Instantiate(enemy, player + dir * 200 + new Vector3(Random.Range(-2f,2f), Random.Range(-2f, 2f), 0), Quaternion.identity);
-        }
+        Instantiate(zoneSpawn, player + dir * 200, Quaternion.identity);
     }
 }
