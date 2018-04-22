@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,6 +59,8 @@ public class PlayerController_Update : MonoBehaviour {
 
 }
 =======
+=======
+>>>>>>> parent of 765f4b6... v0.4f
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -107,4 +110,7 @@ public class PlayerController_Update : MonoBehaviour {
     }
 
 }
+<<<<<<< HEAD
 >>>>>>> 3731406eba917166da5f8a33d85a678395b8651a
+=======
+>>>>>>> parent of 765f4b6... v0.4f

@@ -6,64 +6,34 @@ public class EnemyBehavior : MonoBehaviour {
 
     public float speed, health;
     public GameObject marker;
-    public bool inView, hasMarker;
-    public string state;
-
-    private float turnTimer, angle;
+    public bool outside, hasMarker;
     
     void Start () {
-        inView = true;
+        outside = false;
         hasMarker = false;
-        state = "in";
-        turnTimer = Random.Range(1f, 3f);
     }
 	
 	void Update () {
-        if (state == "in")
-        {
-            turnTimer -= Time.deltaTime;
-            if (turnTimer <= 0)
-            {
-                turnTimer = Random.Range(.2f, .8f);
-                angle = Random.Range(-6f, 6f);
-            }
-            transform.Rotate(0, 0, angle);
-        }
-        if (state == "out")
-        {
-            angle = Mathf.Atan2(transform.parent.transform.position.y - transform.position.y, transform.parent.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
+        Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        playerPos.z = 0;
 
-            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+        float angle = Mathf.Atan2(playerPos.y - transform.position.y, playerPos.x - transform.position.x) * Mathf.Rad2Deg;
 
-            if (Vector3.Distance(transform.position, transform.parent.transform.position) < 3f)
-            {
-                state = "in";
-                angle = Random.Range(-6f, 6f);
-            }
-        }
-        if (state == "triggered")
-        {
-            Vector3 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-            playerPos.z = 0;
-            angle = Mathf.Atan2(playerPos.y - transform.position.y, playerPos.x - transform.position.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Euler(0, 0, angle - 90);
-
-            if (inView)
-            {
-                GetComponent<Weapon>().Shoot();
-            }
-        }
-
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+        
         transform.Translate(0, speed * Time.deltaTime, 0, Space.Self);
 
         var camPos = GameObject.FindGameObjectWithTag("MainCamera").transform.position;
         if (Mathf.Abs(transform.position.x - camPos.x) > 8.9f || Mathf.Abs(transform.position.y - camPos.y) > 5)
-            inView = false;
+            outside = true;
         else
-            inView = true;
+            outside = false;
 
-        if (!inView && !hasMarker)
+        if (!outside)
+        {
+            GetComponent<Weapon>().Shoot();
+        }
+        if (outside && !hasMarker)
         {
             hasMarker = true;
             Spawn();
@@ -79,13 +49,5 @@ public class EnemyBehavior : MonoBehaviour {
     {
         var target = Instantiate(marker, transform.position, transform.rotation);
         target.GetComponent<Marker>().parent = gameObject;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Zone")
-        {
-            state = "out";
-        }
     }
 }

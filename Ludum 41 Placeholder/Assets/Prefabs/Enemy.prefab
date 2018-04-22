@@ -71,7 +71,7 @@ Transform:
   m_GameObject: {fileID: 1081484647711760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.45, y: 2.21, z: 0}
-  m_LocalScale: {x: 2, y: 3, z: 3}
+  m_LocalScale: {x: 4, y: 5, z: 5}
   m_Children:
   - {fileID: 4602127745298070}
   - {fileID: 4580575972659496}
@@ -163,12 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd8bd29001d2954c91ba174cde53e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   health: 10
   marker: {fileID: 1086243286805442, guid: fa5705117ca30814c9964f8c1768e6e8, type: 2}
-  inView: 0
+  outside: 0
   hasMarker: 0
-  state: 
 --- !u!212 &212086192035734708
 SpriteRenderer:
   m_ObjectHideFlags: 1

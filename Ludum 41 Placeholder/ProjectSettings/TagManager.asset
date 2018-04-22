@@ -7,7 +7,6 @@ TagManager:
   - Weapon
   - Enemy
   - Trigger
-  - Zone
   layers:
   - Default
   - TransparentFX

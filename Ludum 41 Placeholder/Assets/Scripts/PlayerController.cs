@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
         if (collision.tag == "Trigger")
         {
             GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Spawn(dir);
-            collision.transform.position = transform.position;
         }
+        Debug.Log(dir);
     }
 }
