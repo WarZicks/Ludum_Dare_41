@@ -71,6 +71,7 @@ public class EnemyBehavior : MonoBehaviour {
 
         if (health <= 0)
         {
+            GameObject.FindGameObjectWithTag("UI").GetComponent<UI_Manager>().CurrentLife += 15;
             Destroy(gameObject);
         }
     }
